@@ -1,1 +1,1 @@
-# vue-course-2
+# vue-3-course
