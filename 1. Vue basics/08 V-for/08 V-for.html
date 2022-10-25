@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div id="app">
+        <ul>
+          <li v-for="el in names" key="el">{{el}}</li>
+        </ul>
+        <br />
+        {{people}}
+        <br />
+        <button @click="addNewItem">Submit</button>
+        <ul>
+          <li v-for="person in people" key="person.name">
+            <h2>{{person.id}}</h2>
+            <p>{{person.name}} - {{person.age}}</p>
+            <p>Gender: {{person.male ? 'male' : 'female'}}</p>
+          </li>
+        </ul>
+        <br />
+        <button @click="addNewItem2">Submit2</button>
+      </div>
+    </div>
+
+    <script>
+      const App = {
+        data() {
+          return {
+            names: ['John', 'Ben', 'Nick', 'James', 'Julia'],
+            people: [
+              {
+                id: 1,
+                name: 'John',
+                age: 24,
+                male: true,
+              },
+              {
+                id: 2,
+                name: 'Ben',
+                age: 34,
+                male: true,
+              },
+              {
+                id: 3,
+                name: 'Nick',
+                age: 27,
+                male: true,
+              },
+              {
+                id: 4,
+                name: 'Julia',
+                age: 27,
+                male: false,
+              },
+            ],
+          };
+        },
+        methods: {
+          addNewItem() {
+            const randomName = Math.random().toString(36).substring(7);
+            this.names.push(randomName);
+          },
+          addNewItem2() {
+            const randomName = Math.random().toString(36).substring(7);
+            this.people.push({
+              id: this.people.length + 1,
+                name: randomName,
+                age: 27,
+                male: false,
+            });
+          },
+        },
+      };
+
+      Vue.createApp(App).mount('#app');
+    </script>
+  </body>
+</html>
